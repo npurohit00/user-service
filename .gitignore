@@ -1,0 +1,33 @@
+# IDE and OS specific files
+.idea/
+.vscode/
+.DS_Store*
+Thumbs.db
+.gradle
+
+# Temporary Files
+*.tmp
+*.temp
+*.log
+
+# Build output
+target/
+build/
+out/
+
+# Editor Backups
+*~
+
+# Version control systems
+.svn/
+.git/
+.hg/
+
+# Local configuration
+.env*  # Add specific environment variable file patterns here (e.g., .env.local)
+
+# OS specific temporary folders
+**/temp*  # Ignores all temp folders within subdirectories
+
+# Ignore all files starting with a dot (hidden files)
+# .*

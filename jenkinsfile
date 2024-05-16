@@ -1,0 +1,57 @@
+pipeline {
+    agent any
+    
+    environment {
+        DOCKER_CREDENTIALS_ID = 'docker-hub-credentials-id'
+        DOCKER_IMAGE_NAME = 'your-dockerhub-username/image-name'
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    docker.build(env.DOCKER_IMAGE_NAME)
+                }
+            }
+        }
+
+        // stage('Test') {
+        //     steps {
+        //         sh 'docker run --rm ${env.DOCKER_IMAGE_NAME} /bin/sh -c "your-test-command"'
+        //     }
+        // }
+
+        stage('Push Docker Image') {
+            steps {
+                script {
+                    docker.withRegistry('https://index.docker.io/v1/', env.DOCKER_CREDENTIALS_ID) {
+                        docker.image(env.DOCKER_IMAGE_NAME).push('latest')
+                    }
+                }
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                sh 'ssh user@hostname "docker pull ${env.DOCKER_IMAGE_NAME}"'
+                sh 'ssh user@hostname "docker stop container-name || true && docker rm container-name || true"'
+                sh 'ssh user@hostname "docker run -d --name container-name -p 8080:8080 ${env.DOCKER_IMAGE_NAME}"'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Pipeline execution successful!'
+        }
+        failure {
+            echo 'Pipeline execution failed!'
+        }
+    }
+}

@@ -26,7 +26,7 @@ phases:
       - ls
       - ls -lR | more
       - echo building the Docker image...
-      - docker build-t SREPOSITORY_URI:latest .
+      - docker build -t SREPOSITORY_URI:latest .
       - echo tagging the Docker image...
       - docker tag $REPOSITORY URI:latest $REPOSITORY URI:$IMAGE TAG
 

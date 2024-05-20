@@ -14,7 +14,7 @@ phases:
       - echo setting repository URI....
       - REPOSITORY_URI=697777980156.dkr.ecr.ap-south-1.amazonaws.com/cicdpipeline
       - echo setting image tag.....
-      - IMAGE TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
+      - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
       - echo "Pre-build phase"
       - chmod +x gradlew
    

@@ -17,6 +17,6 @@ WORKDIR /app
 
 COPY --from=builder /app/build/libs/profile-0.0.1-SNAPSHOT.jar ./app.jar
 
-EXPOSE 8080
+EXPOSE 9000
 
 CMD ["java", "-jar", "app.jar"]

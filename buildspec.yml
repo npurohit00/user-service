@@ -22,7 +22,7 @@ phases:
     commands:
       - echo "Build phase"
       - ./gradlew wrapper --gradle-version 8.7
-      - ./gradlew clean build -x test
+      - ./gradlew clean build -x test 
       - echo building the Docker image...
       - docker build -t $REPOSITORY_URI:latest .
       - echo tagging the Docker image...

@@ -1,0 +1,6 @@
+[
+  {
+    "name": "my-container",
+    "image": "my-docker-image:latest"
+  }
+]

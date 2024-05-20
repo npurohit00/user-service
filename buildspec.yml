@@ -20,6 +20,7 @@ phases:
    
   build:
     commands:
+      - echo building and tagging started image on 'date'
       - echo "Build phase"
       - ./gradlew wrapper --gradle-version 8.7
       - ./gradlew clean build -x test 

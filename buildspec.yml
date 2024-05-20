@@ -24,7 +24,7 @@ phases:
       - ./gradlew wrapper --gradle-version 8.7
       - ./gradlew clean build -x test 
       - echo building the Docker image...
-      - docker build -t $REPOSITORY_URI:latest .
+      - docker build -t $REPOSITORY_URI:latest 
       - echo tagging the Docker image...
       - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
 
